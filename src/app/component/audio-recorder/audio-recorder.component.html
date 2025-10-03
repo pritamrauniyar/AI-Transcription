@@ -1,18 +1,19 @@
-<div>
-    <button
-      type="button"
-      (click)="handleToggleRecording()"
-      [ngClass]="recording ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'"
-    >
-      {{ recording ? 'Stop Recording (' + formattedDuration + ')' : 'Start Recording' }}
-    </button>
-  
-    <!-- If a recording is available, show an audio player -->
-    <ng-container *ngIf="recordedBlob">
-      <audio #audioPlayer controls>
-        <!-- Use the getObjectURL() method to generate the URL -->
-        <source [src]="recordedBlob ? getObjectURL(recordedBlob) : ''" [attr.type]="recordedBlob.type">
-      </audio>
-    </ng-container>
+<div class="recorder">
+  <button type="button"
+          class="recorder__toggle"
+          [class.is-recording]="recording"
+          (click)="handleToggleRecording()">
+    <span class="recorder__pulse" aria-hidden="true"></span>
+    <span class="recorder__label">
+      {{ recording ? 'Stop recording' : 'Start recording' }}
+    </span>
+    <span class="recorder__duration" *ngIf="recording">{{ formattedDuration }}</span>
+  </button>
+
+  <div class="recorder__player" *ngIf="recordedBlob">
+    <strong>Preview capture</strong>
+    <audio #audioPlayer controls>
+      <source [src]="recordedBlob ? getObjectURL(recordedBlob) : ''" [attr.type]="recordedBlob.type" />
+    </audio>
   </div>
-  
+</div>

@@ -1,10 +1,65 @@
+<div class="app-shell">
+  <header class="hero" id="top">
+    <div class="hero__badge">On-device Whisper</div>
+    <h1 class="hero__title">Transcribe smarter, design forward.</h1>
+    <p class="hero__subtitle">
+      Capture audio from any source, generate pristine transcripts, and monitor live captioning inside a single elegant workspace.
+    </p>
+    <div class="hero__actions">
+      <a class="hero__button hero__button--primary" href="#workspace">Start a transcription</a>
+      <a class="hero__button hero__button--ghost" href="#live-captioning">Explore live captions</a>
+    </div>
+    <ul class="hero__highlights" aria-label="Highlights">
+      <li>
+        <strong>Instant setup</strong>
+        <span>No installs or backend required &mdash; everything stays in the browser.</span>
+      </li>
+      <li>
+        <strong>Lossless pipeline</strong>
+        <span>Upload, record, or stream while keeping audio buffers ready for processing.</span>
+      </li>
+      <li>
+        <strong>Sharable outputs</strong>
+        <span>Export your transcripts to TXT or JSON with a single click.</span>
+      </li>
+    </ul>
+  </header>
 
-<div>
-  <div>
-    <app-audio-manager [transcriber]="transcriber"></app-audio-manager>
-    <app-transcript [transcribedData]="transcriber.output"></app-transcript>
-  </div>
-</div>
-<div>
-  <app-live-transcribe></app-live-transcribe>
+  <main class="workspace" id="workspace">
+    <section class="panel panel--primary" aria-labelledby="panel-batch-title">
+      <div class="panel__header">
+        <h2 id="panel-batch-title">Batch transcription studio</h2>
+        <p>Load audio from a URL, your files, or a fresh recording. Visual feedback keeps progress and status clear.</p>
+      </div>
+      <app-audio-manager [transcriber]="transcriber"></app-audio-manager>
+    </section>
+
+    <section class="panel panel--secondary" aria-labelledby="panel-transcript-title">
+      <div class="panel__header">
+        <h2 id="panel-transcript-title">Live transcript canvas</h2>
+        <p>Review generated segments in real time, jump to timestamps, and export in the format you need.</p>
+      </div>
+      <app-transcript [transcribedData]="transcriber.output"></app-transcript>
+    </section>
+  </main>
+
+  <section class="live-section" id="live-captioning">
+    <div class="live-section__content">
+      <div class="live-section__copy">
+        <div class="live-section__badge">Live Captioning</div>
+        <h2>From meeting rooms to events, stay effortlessly in sync.</h2>
+        <p>
+          Kick off low-latency live transcription with configurable models, multilingual options, and a polished reading view designed for the stage.
+        </p>
+        <ul class="live-section__list">
+          <li>Floating glass UI optimized for long sessions.</li>
+          <li>Animated captions with smooth autoscroll.</li>
+          <li>Adaptive styling for bright or dark venues.</li>
+        </ul>
+      </div>
+      <div class="live-section__panel">
+        <app-live-transcribe></app-live-transcribe>
+      </div>
+    </div>
+  </section>
 </div>

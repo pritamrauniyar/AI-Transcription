@@ -1,0 +1,348 @@
+:host {
+  display: block;
+}
+
+.audio-manager {
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+}
+
+.audio-manager__sources {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.1rem;
+}
+
+.source-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 1.15rem 1.35rem;
+  border-radius: var(--radius-md);
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  color: inherit;
+  text-align: left;
+  width: 100%;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: inset 0 0 0 1px rgba(139, 92, 246, 0.08);
+  overflow: hidden;
+}
+
+.source-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(139, 92, 246, 0.12), rgba(59, 130, 246, 0));
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.source-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(139, 92, 246, 0.45);
+  box-shadow: 0 20px 45px rgba(10, 16, 30, 0.45);
+}
+
+.source-card:hover::after {
+  opacity: 1;
+}
+
+.source-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background: rgba(139, 92, 246, 0.18);
+  color: #f0e9ff;
+  flex-shrink: 0;
+  box-shadow: inset 0 0 0 1px rgba(139, 92, 246, 0.25);
+}
+
+.source-card__icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.source-card__body {
+  display: grid;
+  gap: 0.35rem;
+  position: relative;
+  z-index: 1;
+}
+
+.source-card__body strong {
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: #f3f4ff;
+}
+
+.source-card__body small {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.audio-manager__progress {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.audio-manager__progress-bar {
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.5);
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.audio-manager__progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(120deg, #34d399, #60a5fa);
+  transition: width 0.35s ease;
+}
+
+.audio-manager__progress-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(224, 231, 255, 0.78);
+}
+
+.audio-manager__player {
+  display: grid;
+  gap: 1.4rem;
+  animation: fadeLift 0.6s ease;
+}
+
+.audio-manager__player-shell {
+  display: grid;
+  gap: 0.8rem;
+  background: rgba(11, 19, 35, 0.82);
+  border-radius: var(--radius-md);
+  padding: 1.35rem;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.audio-manager__audio {
+  width: 100%;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.audio-manager__meta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.audio-manager__badge {
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  font-size: 0.7rem;
+  background: rgba(139, 92, 246, 0.18);
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  color: #e4d9ff;
+}
+
+.audio-manager__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+.audio-manager__loader {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.88rem;
+  color: rgba(209, 250, 229, 0.85);
+  padding: 0.8rem 1.2rem;
+  border-radius: var(--radius-sm);
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  width: fit-content;
+}
+
+.audio-manager__loader-spinner {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 3px solid rgba(16, 185, 129, 0.3);
+  border-top-color: rgba(16, 185, 129, 0.9);
+  animation: spin 1s linear infinite;
+}
+
+.cta {
+  background: linear-gradient(120deg, var(--accent), var(--accent-strong));
+  padding: 0.95rem 1.8rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  box-shadow: 0 18px 45px rgba(128, 90, 213, 0.32);
+}
+
+.cta--ghost {
+  background: rgba(148, 163, 184, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.24);
+  color: var(--text-primary);
+}
+
+.cta--ghost:hover {
+  background: rgba(148, 163, 184, 0.24);
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 40;
+  animation: modalFade 0.35s ease;
+}
+
+.modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.68);
+  backdrop-filter: blur(10px);
+}
+
+.modal__dialog {
+  position: relative;
+  width: min(540px, calc(100% - 2.5rem));
+  background: rgba(10, 17, 32, 0.95);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  box-shadow: 0 32px 85px rgba(5, 10, 22, 0.6);
+  display: grid;
+  gap: 1.4rem;
+  animation: dialogLift 0.4s ease;
+}
+
+.modal__header {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.modal__header p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.modal__field {
+  display: grid;
+  gap: 0.6rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.modal__field span {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(226, 232, 255, 0.75);
+}
+
+.modal__checkboxes {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.modal__checkboxes label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.modal__checkboxes input[type='checkbox'] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+}
+
+.modal__grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.modal__actions--end {
+  justify-content: flex-end;
+}
+
+@keyframes fadeLift {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes modalFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dialogLift {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .audio-manager {
+    gap: 1.8rem;
+  }
+
+  .source-card {
+    padding: 1.05rem 1.15rem;
+  }
+
+  .audio-manager__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cta {
+    width: 100%;
+    justify-content: center;
+  }
+}

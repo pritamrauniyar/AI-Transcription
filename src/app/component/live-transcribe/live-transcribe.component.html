@@ -1,102 +1,80 @@
-<div class="live-transcribe-container">
-    <!-- START/STOP Live Transcription -->
-    <button (click)="toggleLiveTranscription()">
-      {{ isLiveTranscribing ? 'Stop Live Transcription' : 'Start Live Transcription' }}
+<div class="live-card">
+  <header class="live-card__header">
+    <span class="live-card__badge">Realtime stream</span>
+    <h3>Live transcription console</h3>
+    <p>Toggle captioning on demand and keep the stream focused with adaptive typography.</p>
+  </header>
+
+  <div class="live-card__controls">
+    <button type="button"
+            class="live-card__button"
+            [class.is-active]="isLiveTranscribing"
+            (click)="toggleLiveTranscription()">
+      {{ isLiveTranscribing ? 'Stop live transcription' : 'Start live transcription' }}
     </button>
-  
-    <!-- SETTINGS BUTTON -->
-    <button (click)="onSettingsTileClick()">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.25"
-        stroke="currentColor"
-        width="24"
-        height="24">
-        <path 
-          stroke-linecap="round" 
-          stroke-linejoin="round" 
-          d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593
-             c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257
-             1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125
-             0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 
-             0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 
-             1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133
-             -.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644
-             .869l-.213 1.281c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398
-             -1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01
-             -.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01
-             -1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24
-             .437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l
-             -1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 01
-             1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22
-             -.128.332-.183.582-.495.644-.869l.214-1.281z" />
-        <path 
-          stroke-linecap="round" 
-          stroke-linejoin="round" 
-          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-      </svg>
+    <button type="button" class="live-card__button live-card__button--ghost" (click)="onSettingsTileClick()">
+      Configure
     </button>
-  
-    <!-- LOADING/PROGRESS MESSAGE -->
-         <div *ngIf="(transcriberService?.progressItems?.length ?? 0) > 0">
-      Loading model files... (this only runs once)
-    </div>
-  
-    <!-- LIVE TRANSCRIPT DISPLAY -->
-    <div class="transcript-box">
-      <p>{{ liveTranscript }}</p>
+  </div>
+
+  <div class="live-card__status" *ngIf="(transcriberService?.progressItems?.length ?? 0) > 0">
+    <span class="live-card__spinner" aria-hidden="true"></span>
+    Loading model files... this only runs once.
+  </div>
+
+  <div class="live-card__stream" [class.is-active]="isLiveTranscribing">
+    <div class="live-card__ticker" [class.is-empty]="!liveTranscript">
+      <p>{{ liveTranscript || 'Waiting for microphone input...' }}</p>
     </div>
   </div>
-  
-  <!-- SETTINGS MODAL -->
-  <div class="modal-overlay" *ngIf="showSettingsModal">
-    <div class="modal">
-      <h3>Transcription Settings</h3>
-  
-      <!-- MODEL SELECTION -->
-      <label>Select the model to use:</label>
+</div>
+
+<div class="modal" *ngIf="showSettingsModal">
+  <div class="modal__overlay" (click)="onSettingsModalClose()"></div>
+  <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="live-settings-title">
+    <div class="modal__header">
+      <h3 id="live-settings-title">Transcription settings</h3>
+      <p>Pick a Whisper model and advanced options for live captioning.</p>
+    </div>
+    <label class="modal__field">
+      <span>Model variant</span>
       <select [(ngModel)]="transcriberService.model">
         <option value="Xenova/whisper-tiny">Xenova/whisper-tiny</option>
         <option value="Xenova/whisper-base">Xenova/whisper-base</option>
         <option value="Xenova/whisper-small">Xenova/whisper-small</option>
         <option value="Xenova/whisper-medium">Xenova/whisper-medium</option>
       </select>
-  
-      <!-- CHECKBOXES -->
-      <div class="checkbox-group">
-        <div>
-          <input id="multilingual" type="checkbox" [(ngModel)]="transcriberService.multilingual" />
-          <label for="multilingual">Multilingual</label>
-        </div>
-        <div>
-          <input id="quantized" type="checkbox" [(ngModel)]="transcriberService.quantized" />
-          <label for="quantized">Quantized</label>
-        </div>
-      </div>
-  
-      <!-- ONLY SHOW IF MULTILINGUAL -->
-      <div *ngIf="transcriberService.multilingual">
-        <label>Select the source language:</label>
+    </label>
+    <div class="modal__checkboxes">
+      <label>
+        <input id="live-multilingual" type="checkbox" [(ngModel)]="transcriberService.multilingual" />
+        <span>Enable multilingual decoding</span>
+      </label>
+      <label>
+        <input id="live-quantized" type="checkbox" [(ngModel)]="transcriberService.quantized" />
+        <span>Use quantized weights</span>
+      </label>
+    </div>
+    <div class="modal__grid" *ngIf="transcriberService.multilingual">
+      <label class="modal__field">
+        <span>Source language</span>
         <select [(ngModel)]="transcriberService.language">
           <option value="en">English</option>
           <option value="zh">Chinese</option>
           <option value="de">German</option>
         </select>
-  
-        <label>Select the task to perform:</label>
+      </label>
+      <label class="modal__field">
+        <span>Task</span>
         <select [(ngModel)]="transcriberService.subtask">
           <option value="transcribe">Transcribe</option>
           <option value="translate">Translate (to English)</option>
         </select>
-      </div>
-  
-      <!-- MODAL ACTION BUTTONS -->
-      <div class="modal-buttons">
-        <button (click)="onSettingsModalSubmit()">Submit</button>
-        <button (click)="onSettingsModalClose()">Close</button>
-      </div>
+      </label>
+    </div>
+    <div class="modal__actions">
+      <button type="button" class="live-card__button" (click)="onSettingsModalSubmit()">Save</button>
+      <button type="button" class="live-card__button live-card__button--ghost" (click)="onSettingsModalClose()">Cancel</button>
     </div>
   </div>
-  
+</div>
