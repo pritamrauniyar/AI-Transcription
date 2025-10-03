@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "speed-and-device-details": {
+  "ai-transcription": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -24,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/speed-and-device-details",
+            "outputPath": "dist/ai-transcription",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -68,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "speed-and-device-details:build:production"
+              "buildTarget": "ai-transcription:build:production"
             },
             "development": {
-              "buildTarget": "speed-and-device-details:build:development"
+              "buildTarget": "ai-transcription:build:development"
             }
           },
           "defaultConfiguration": "development"
