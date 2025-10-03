@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DeviceDetectorService } from 'ngx-device-detector';
-import { SpeedTestModule } from 'ng-speed-test';
 import { ModalComponent } from './component/modal/modal.component';
 import { UrlInputComponent } from './component/url-input/url-input.component';
 import { AudioManagerComponent } from './component/audio-manager/audio-manager.component';
@@ -33,12 +30,9 @@ import { LiveTranscribeComponent } from './component/live-transcribe/live-transc
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SpeedTestModule,
+    
     HttpClientModule,
     FormsModule
-  ],
-  providers: [
-    DeviceDetectorService
   ],
   bootstrap: [AppComponent]
 })
