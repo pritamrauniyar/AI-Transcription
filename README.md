@@ -1,4 +1,4 @@
-# SpeedAndDeviceDetails
+# AI Transcription
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.6.
 
@@ -119,16 +119,5 @@ npm test
 
 - Mic not available: make sure the browser has permission to use the microphone and you're using HTTPS or localhost.
 - Audio not transcribing: check console logs, ensure `TranscriberService` integration points are implemented, and verify worker messages in DevTools.
-
-## License & contact
-
-This repository does not include a license file — add one if you plan to publish. For questions, contact the repository owner.
-
----
-
-If you'd like, I can also:
-- add a small example snippet showing how to call `TranscriberService` from a component,
-- wire a simple mocked transcription implementation (so the UI shows sample results without an external model), or
-- add a CONTRIBUTING.md with notes on extending the transcription pipeline.
-
-Please tell me which of the above (if any) you'd like me to add next.
+ 
+ 
