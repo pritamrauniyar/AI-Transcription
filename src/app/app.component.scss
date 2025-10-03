@@ -1,0 +1,279 @@
+:host {
+    display: contents;
+  }
+  .teacher-classes {
+    background-color: var(--Elevate---v5-sys-light-surface, #f5fbf3);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .header {
+    align-items: center;
+    background-color: var(--Elevate---v5-sys-dark-surface, #0f1510);
+    display: flex;
+    padding: 8px 16px;
+    gap: 32px;
+  }
+  .logo {
+    width: 49px;
+    height: 40px;
+    object-fit: contain;
+  }
+  .main-nav {
+    flex: 1;
+  }
+  .nav-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .nav-item {
+    position: relative;
+  }
+  .nav-link {
+    color: #010101;
+    text-decoration: none;
+    padding: 14px 16px;
+    display: block;
+    font: 500 14px/1 Roboto, sans-serif;
+    letter-spacing: 0.1px;
+  }
+  .nav-item.active .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: var(--Elevate---v5-sys-dark-primary, #71db9a);
+    border-radius: 100px 100px 0 0;
+  }
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .user-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+  }
+  .user-details {
+    display: flex;
+    flex-direction: column;
+  }
+  .user-greeting {
+    color: #010101;
+    font: 500 14px/1 Roboto, sans-serif;
+    letter-spacing: 0.1px;
+  }
+  .logout-link {
+    color: #010101;
+    font: 600 12px/1 Roboto, sans-serif;
+    letter-spacing: 0.5px;
+    text-decoration: underline;
+  }
+  .main-content {
+    display: flex;
+    flex: 1;
+  }
+  .sidebar {
+    width: 25%;
+    background-color: var(--Elevate---v5-sys-light-surface-container-low, #f0f5ed);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+    padding: 24px 12px 12px;
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font: 500 14px/1 Roboto, sans-serif;
+    letter-spacing: 0.1px;
+    margin: 0 0 16px;
+  }
+  .sidebar-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .class-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .class-item {
+    margin-bottom: 8px;
+  }
+  .class-link {
+    display: block;
+    padding: 16px;
+    text-decoration: none;
+    color: #000;
+    border-radius: 12px;
+  }
+  .class-item.active .class-link {
+    background-color: var(--Elevate---v5-sys-light-secondary-container, #c6f1d0);
+  }
+  .class-name {
+    display: block;
+    font: 600 14px/20px Roboto, sans-serif;
+    letter-spacing: 0.1px;
+  }
+  .class-details {
+    display: block;
+    font: 500 11px/1 Roboto, sans-serif;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+  }
+  .freshchat-logo {
+    margin-top: auto;
+    height: 80px;
+  }
+  .main-panel {
+    flex: 1;
+    padding: 24px 40px;
+  }
+  .class-info {
+    background-color: var(--Elevate---v5-sys-light-surface-container-low, #f0f5ed);
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .class-selector {
+    margin-bottom: 16px;
+  }
+  .class-select {
+    width: 100%;
+    padding: 12px;
+    font: 400 16px Roboto, sans-serif;
+    border: 1px solid var(--Elevate---v5-sys-light-outline, #6e7a70);
+    border-radius: 4px;
+  }
+  .class-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+  .detail-item {
+    flex: 1;
+  }
+  .detail-item dt {
+    font: 500 12px/1 Roboto, sans-serif;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .detail-item dd {
+    font: 400 14px/1 Roboto, sans-serif;
+    letter-spacing: 0.25px;
+    margin: 0;
+  }
+  .detail-link {
+    color: inherit;
+    text-decoration: underline;
+  }
+  .content-nav {
+    margin-bottom: 24px;
+  }
+  .content-nav-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid var(--Elevate---v5-sys-light-outline, #6e7a70);
+  }
+  .content-nav-link {
+    display: block;
+    padding: 14px 16px;
+    color: #000;
+    text-decoration: none;
+    font: 500 14px/1 Roboto, sans-serif;
+    letter-spacing: 0.1px;
+  }
+  .content-nav-item.active .content-nav-link {
+    position: relative;
+  }
+  .content-nav-item.active .content-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--Elevate---v5-sys-light-primary, #005c33);
+  }
+  .student-list {
+    border: 1px solid var(--outline-12, rgba(0, 0, 0, 0.12));
+    border-radius: 4px;
+  }
+  .student-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid var(--outline-12, rgba(0, 0, 0, 0.12));
+  }
+  .student-count, .coach-count {
+    font: 400 16px Roboto, sans-serif;
+    letter-spacing: 0.15px;
+  }
+  .coach-count {
+    text-decoration: underline;
+  }
+  .student-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .student-table th, .student-table td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--outline-12, rgba(0, 0, 0, 0.12));
+  }
+  .student-table th {
+    background-color: var(--header-row-gray-f-6-f-6-f-6, #f6f6f6);
+    font-weight: 500;
+    letter-spacing: 0.1px;
+  }
+  .student-table td {
+    font-feature-settings: "liga" off, "clig" off;
+  }
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  @media (max-width: 991px) {
+    .header {
+      flex-wrap: wrap;
+    }
+    .main-nav {
+      order: 3;
+      width: 100%;
+      margin-top: 16px;
+    }
+    .nav-list {
+      flex-wrap: wrap;
+    }
+    .main-content {
+      flex-direction: column;
+    }
+    .sidebar {
+      width: 100%;
+    }
+    .main-panel {
+      padding: 24px 20px;
+    }
+    .class-details {
+      flex-direction: column;
+      gap: 16px;
+    }
+    .student-table {
+      font-size: 12px;
+    }
+  }

@@ -1,0 +1,21 @@
+<div #transcriptContainer>
+    <div *ngFor="let chunk of transcribedData?.chunks; let i = index" 
+         [attr.data-key]="i + '-' + chunk.text">
+      <div class="mr-5">
+        {{ formatAudioTimestamp(chunk.timestamp[0]) }}
+      </div>
+      <div>
+        {{ chunk.text }}
+      </div>
+    </div>
+    
+    <div *ngIf="transcribedData && !transcribedData.isBusy">
+      <button (click)="exportTXT()">
+        Export TXT
+      </button>
+      <button (click)="exportJSON()">
+        Export JSON
+      </button>
+    </div>
+  </div>
+  

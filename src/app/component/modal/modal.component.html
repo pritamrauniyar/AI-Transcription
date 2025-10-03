@@ -1,0 +1,43 @@
+<div *ngIf="show">
+    <!-- Backdrop -->
+    <div></div>
+  
+    <!-- Modal Container -->
+    <div>
+      <div>
+        <!-- Title -->
+        <h3>
+          {{ title }}
+        </h3>
+        <!-- Content -->
+        <div>
+          {{ content }}
+        </div>
+  
+        <!-- Buttons -->
+        <div>
+          <!-- Submit Button (only shown if submitText is provided) -->
+          <button
+            *ngIf="submitText"
+            type="button"
+            [disabled]="!submitEnabled"
+            [ngClass]="{
+              'bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2': submitEnabled,
+              'bg-gray-300': !submitEnabled
+            }"
+            (click)="submitModal()"
+          >
+            {{ submitText }}
+          </button>
+          <!-- Close Button -->
+          <button
+            type="button"
+            (click)="closeModal()"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
